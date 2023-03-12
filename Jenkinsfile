@@ -22,10 +22,12 @@ pipeline {
             }
         }
         stage('deploy to st') {
-            sh 'kubectl apply -f ./K8s/mysql-aws.yml'
-            sh 'kubectl apply -f ./K8s/flask-aws.yml'
-            sh 'sleep 10s'
-            sh 'kubectl get svc'
+            steps {
+                sh 'kubectl apply -f ./K8s/mysql-aws.yml'
+                sh 'kubectl apply -f ./K8s/flask-aws.yml'
+                sh 'sleep 10s'
+                sh 'kubectl get svc'
+            }
         }
     }
 
