@@ -1,13 +1,13 @@
 pipeline {
     agent { lable 'docker'}
     triggers {
-        pollSCM('* * * * *')
+        pollSCM('* 23 * * *')
     }
     stages {
         stage ('vcs') {
             steps {
                 git url: https://github.com/Sravyaws/StudentCoursesRestAPI.git
-                    branch develop
+                    branch sprint_1_release
             }
         }
         stage ('build') {
@@ -15,8 +15,7 @@ pipeline {
                 sh 'docker image build -t <dockerhubusername>/spc:latest .'
 
             }
-            
-            
+                   
         }
         stage ('scan and push') {
             steps {
